@@ -15,23 +15,24 @@
   <div class="strength-indicator">
     <div
       [ngClass]="{
-        weak: passwordStrength === 'weak',
-        medium: passwordStrength === 'medium',
-        strong: passwordStrength === 'strong'
+        weak:
+          passwordStrength === PASSWORD_WEAK ||
+          passwordStrength === PASSWORD_TOO_SHORT,
+        medium: passwordStrength === PASSWORD_MEDIUM,
+        strong: passwordStrength === PASSWORDS_STRONG
       }"
     ></div>
     <div
       [ngClass]="{
-        weak: passwordStrength === 'medium' || passwordStrength === 'strong',
-        medium: passwordStrength === 'medium' || passwordStrength === 'strong',
-        strong: passwordStrength === 'strong'
+        weak: passwordStrength === PASSWORD_TOO_SHORT,
+        medium: passwordStrength === PASSWORD_MEDIUM,
+        strong: passwordStrength === PASSWORDS_STRONG
       }"
     ></div>
     <div
       [ngClass]="{
-        weak: passwordStrength === 'strong',
-        medium: passwordStrength === 'strong',
-        strong: passwordStrength === 'strong'
+        weak: passwordStrength === PASSWORD_TOO_SHORT,
+        strong: passwordStrength === PASSWORDS_STRONG
       }"
     ></div>
   </div>

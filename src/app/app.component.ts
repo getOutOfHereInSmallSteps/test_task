@@ -13,6 +13,11 @@ import { PASSWORD_COMPLEXITY } from './shared/enums';
 })
 export class AppComponent {
   private readonly MIN_PASSWORD_LENGTH = 8;
+  readonly PASSWORD_EMPTY = PASSWORD_COMPLEXITY.EMPTY;
+  readonly PASSWORD_TOO_SHORT = PASSWORD_COMPLEXITY.TOO_SHORT;
+  readonly PASSWORD_WEAK = PASSWORD_COMPLEXITY.WEAK;
+  readonly PASSWORD_MEDIUM = PASSWORD_COMPLEXITY.MEDIUM;
+  readonly PASSWORDS_STRONG = PASSWORD_COMPLEXITY.STRONG;
 
   password: string = '';
   passwordStrength: string = '';
@@ -26,15 +31,23 @@ export class AppComponent {
     if (!this.password) {
       this.passwordStrength = PASSWORD_COMPLEXITY.EMPTY;
     } else if (this.password.length < this.MIN_PASSWORD_LENGTH) {
-      this.passwordStrength = PASSWORD_COMPLEXITY.WEAK;
+      this.passwordStrength = PASSWORD_COMPLEXITY.TOO_SHORT;
     } else if (
       /[a-zA-Z]/.test(this.password) &&
       /\d/.test(this.password) &&
       /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(this.password)
     ) {
       this.passwordStrength = PASSWORD_COMPLEXITY.STRONG;
-    } else {
+    } else if (
+      (/[a-zA-Z]/.test(this.password) && /\d/.test(this.password)) ||
+      (/\d/.test(this.password) &&
+        /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(this.password)) ||
+      (/[a-zA-Z]/.test(this.password) &&
+        /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(this.password))
+    ) {
       this.passwordStrength = PASSWORD_COMPLEXITY.MEDIUM;
+    } else {
+      this.passwordStrength = PASSWORD_COMPLEXITY.WEAK;
     }
   }
 }
