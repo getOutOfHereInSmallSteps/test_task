@@ -1,39 +1,62 @@
-<!-- password-strength.component.html -->
-<div class="password">
-  <input
-    [placeholder]="showPassword ? 'Password' : '********'"
-    [type]="showPassword ? 'text' : 'password'"
-    [(ngModel)]="password"
-    (input)="checkStrength()"
-  />
-  <span
-    class="icon"
-    [ngClass]="showPassword ? 'icon-eye' : 'icon-eye-blocked'"
-    (click)="togglePasswordVisibility()"
-  ></span>
+<div class="container">
+  <div class="row header">
+    <div class="col">
+      <header>
+        <h1>Password Checker</h1>
+      </header>
+    </div>
+  </div>
 
-  <div class="strength-indicator">
-    <div
-      [ngClass]="{
-        weak:
-          passwordStrength === PASSWORD_WEAK ||
-          passwordStrength === PASSWORD_TOO_SHORT,
-        medium: passwordStrength === PASSWORD_MEDIUM,
-        strong: passwordStrength === PASSWORDS_STRONG
-      }"
-    ></div>
-    <div
-      [ngClass]="{
-        weak: passwordStrength === PASSWORD_TOO_SHORT,
-        medium: passwordStrength === PASSWORD_MEDIUM,
-        strong: passwordStrength === PASSWORDS_STRONG
-      }"
-    ></div>
-    <div
-      [ngClass]="{
-        weak: passwordStrength === PASSWORD_TOO_SHORT,
-        strong: passwordStrength === PASSWORDS_STRONG
-      }"
-    ></div>
+  <div class="row">
+    <div class="col">
+      <div class="password">
+        <div class="password-input">
+          <input
+            class="form-control"
+            [placeholder]="showPassword ? 'Password' : '********'"
+            [type]="showPassword ? 'text' : 'password'"
+            [(ngModel)]="password"
+            (input)="checkStrength()"
+          />
+          <span
+            class="icon"
+            [ngClass]="showPassword ? 'icon-eye' : 'icon-eye-blocked'"
+            (click)="togglePasswordVisibility()"
+          ></span>
+        </div>
+        <div class="strength-indicator">
+          <div
+            [ngClass]="{
+              weak:
+                passwordStrength === PASSWORD_WEAK ||
+                passwordStrength === PASSWORD_TOO_SHORT,
+              medium: passwordStrength === PASSWORD_MEDIUM,
+              strong: passwordStrength === PASSWORDS_STRONG
+            }"
+          ></div>
+          <div
+            [ngClass]="{
+              weak: passwordStrength === PASSWORD_TOO_SHORT,
+              medium: passwordStrength === PASSWORD_MEDIUM,
+              strong: passwordStrength === PASSWORDS_STRONG
+            }"
+          ></div>
+          <div
+            [ngClass]="{
+              weak: passwordStrength === PASSWORD_TOO_SHORT,
+              strong: passwordStrength === PASSWORDS_STRONG
+            }"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row footer">
+    <div class="col">
+      <footer class="text-center">
+        &copy; {{ currentYear }} Created by Alex Bihas. MIT License
+      </footer>
+    </div>
   </div>
 </div>

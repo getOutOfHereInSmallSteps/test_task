@@ -50,4 +50,8 @@ export class AppComponent {
       this.passwordStrength = PASSWORD_COMPLEXITY.WEAK;
     }
   }
+
+  get currentYear(): number {
+    return new Date().getFullYear();
+  }
 }
