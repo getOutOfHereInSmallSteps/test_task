@@ -1,0 +1,32 @@
+/* password-strength.component.css */
+.password {
+  height: fit-content;
+}
+
+.strength-indicator {
+  display: flex;
+  margin-top: 5px;
+}
+
+.strength-indicator {
+  div {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    background-color: #adb5bd;
+    border-radius: 50%;
+    transition: all 0.2s ease-in-out;
+
+    &.weak {
+      background-color: #c92a2a;
+    }
+
+    &.medium {
+      background-color: #ffd43b;
+    }
+
+    &.strong {
+      background-color: #40c057;
+    }
+  }
+}

@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+// Global Styles
+
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  transition: all 0.3s;
+  cursor: pointer;
+}
