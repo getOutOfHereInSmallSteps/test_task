@@ -3,5 +3,5 @@ export enum PASSWORD_COMPLEXITY {
   TOO_SHORT = 'too-short',
   MEDIUM = 'medium',
   STRONG = 'strong',
-  EMPTY = '',
+  EMPTY = 'empty',
 }

@@ -3,11 +3,14 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { PASSWORD_COMPLEXITY } from './shared/enums';
+import { MediumPasswordPatternPipe } from './shared/pipes/medium-password-pattern.pipe';
+import { StrongPasswordPatternPipe } from './shared/pipes/strong-password-pattern.pipe';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, FormsModule, RouterOutlet],
+  providers: [MediumPasswordPatternPipe, StrongPasswordPatternPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -23,6 +26,11 @@ export class AppComponent {
   passwordStrength: string = '';
   showPassword: boolean = false;
 
+  constructor(
+    private strongPasswordPatternPipe: StrongPasswordPatternPipe,
+    private mediumPasswordPatterPipe: MediumPasswordPatternPipe
+  ) {}
+
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
   }
@@ -32,19 +40,9 @@ export class AppComponent {
       this.passwordStrength = PASSWORD_COMPLEXITY.EMPTY;
     } else if (this.password.length < this.MIN_PASSWORD_LENGTH) {
       this.passwordStrength = PASSWORD_COMPLEXITY.TOO_SHORT;
-    } else if (
-      /[a-zA-Z]/.test(this.password) &&
-      /\d/.test(this.password) &&
-      /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(this.password)
-    ) {
+    } else if (this.strongPasswordPatternPipe.transform(this.password)) {
       this.passwordStrength = PASSWORD_COMPLEXITY.STRONG;
-    } else if (
-      (/[a-zA-Z]/.test(this.password) && /\d/.test(this.password)) ||
-      (/\d/.test(this.password) &&
-        /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(this.password)) ||
-      (/[a-zA-Z]/.test(this.password) &&
-        /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(this.password))
-    ) {
+    } else if (this.mediumPasswordPatterPipe.transform(this.password)) {
       this.passwordStrength = PASSWORD_COMPLEXITY.MEDIUM;
     } else {
       this.passwordStrength = PASSWORD_COMPLEXITY.WEAK;

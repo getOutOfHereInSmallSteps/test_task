@@ -1,46 +1,28 @@
-.password {
-  height: fit-content;
-}
-
-.header {
-  margin-bottom: 8rem;
-}
-
-.container {
-  height: 100vh;
-}
-
-.footer {
-  margin-top: 20rem;
-}
-
 .icon {
   font-size: 24px;
-  margin-right: 8px;
 }
 
 .form-control {
-  display: inline-block;
   width: 40%;
 }
 
 .password-input {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
   margin-bottom: 0.5rem;
 }
 
 .strength-indicator {
   display: flex;
+  justify-content: center;
+  gap: 0.5rem;
   margin-top: 5px;
-}
 
-.strength-indicator {
-  div {
-    width: 20px;
-    height: 20px;
-    margin-right: 5px;
+  &__light {
+    width: 1.4rem;
+    height: 1.4rem;
     background-color: #adb5bd;
     border-radius: 50%;
     transition: all 0.2s ease-in-out;

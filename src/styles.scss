@@ -1,19 +1,10 @@
 // Global Styles
 
-// body {
-//   height: 100vh;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-// }
-
 .icon {
   transition: all 0.3s;
   cursor: pointer;
 
-  & {
-    &-eye-blocked {
-      opacity: 0.6;
-    }
+  &-eye-blocked {
+    opacity: 0.6;
   }
 }
